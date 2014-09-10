@@ -1,0 +1,31 @@
+{
+	"name": "anavaro/autoban",
+	"type": "phpbb-extension",
+	"description": "Adds abbilty to ban users on particular count of board warnings",
+	"homepage": "https://github.com/lucifer4o/birthdaycontrol",
+	"version": "1.0.0",
+	"time": "2014-06-25",
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Stanislav Atanasov",
+			"email": "lucifer@anavaro.com",
+			"homepage": "http://anavaro.com",
+			"role": "Lead Developer"
+		}
+	],
+	"require": {
+		"php": ">=5.3"
+	},
+	"extra": {
+		"display-name": "phpBB 3.1 Auto Ban",
+		"version-check": {
+			"host": "lab.anavaro.com",
+			"directory": "/phpbb-ext",
+			"filename": "autoban.json"
+		},
+		"soft-require": {
+			"phpbb/phpbb": "3.1.*@dev"
+		}
+	}
+}
