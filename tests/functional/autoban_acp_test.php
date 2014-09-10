@@ -13,7 +13,7 @@ namespace anavaro\autoban\tests\functional;
 /**
 * @group functional
 */
-class autoban_acp_test extends birthdaycontrol_base
+class autoban_acp_test extends autoban_base
 {
 	public function acp_pages_data()
 	{
