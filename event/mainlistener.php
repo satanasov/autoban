@@ -56,7 +56,10 @@ class mainlistener implements EventSubscriberInterface
 	{
 		if($this->config['autoban_active'] && ($event['user_row']['user_warnings'] + 1) >= $this->config['autoban_count'])
 		{
-			include($this->root_path . 'includes/functions_user.' . $this->php_ext);
+			if (!function_exists('user_ban'))
+			{
+				include($this->root_path . 'includes/functions_user.' . $this->php_ext);
+			}
 			user_ban('user', utf8_normalize_nfc($event['user_row']['username']), $this->config['autoban_duration'] * 60 * 24, '', '', $this->config['autoban_reason'], $this->config['autoban_reason']);
 		}
 	}
