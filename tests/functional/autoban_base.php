@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Birthday Control
+* Autoban Control
 *
 * @copyright (c) 2014 Stanislav Atanasov
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -41,4 +41,24 @@ class autoban_base extends \phpbb_functional_test_case
 		$this->purge_cache();
 	}
 	
+	public function get_user_id($username)
+	{
+		$sql = 'SELECT user_id, username
+				FROM ' . USERS_TABLE . '
+				WHERE username_clean = \''.$this->db->sql_escape(utf8_clean_string($username)).'\'';
+		$result = $this->db->sql_query($sql);
+		$row = $this->db->sql_fetchrow($result);
+		return $row['user_id'];
+	}
+	
+	public function is_banned($user_id)
+	{
+		$sql = 'SELECT COUNT(ban_id) as count
+				FROM ' . BANLIST_TABLE .'
+				WHERE ban_userid = ' . $user_id;
+		$result = $this->db->sql_query($sql);
+		$row = $this->db->sql_fetchrow($result);
+		
+		return $row['count'];
+	}
 }
