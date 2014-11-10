@@ -63,12 +63,4 @@ class mainlistener implements EventSubscriberInterface
 			user_ban('user', utf8_normalize_nfc($event['user_row']['username']), $this->config['autoban_duration'] * 60 * 24, '', '', $this->config['autoban_reason'], $this->config['autoban_reason']);
 		}
 	}
-
-	public function var_display($event)
-	{
-		echo '<pre>';
-		print_r($event);
-		echo '</pre>';
-	}
-
 }
