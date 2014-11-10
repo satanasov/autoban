@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/lucifer4o/autoban.svg?branch=master)](https://travis-ci.org/lucifer4o/autoban)
+[![Build Status](https://travis-ci.org/satanasov/autoban.svg?branch=master)](https://travis-ci.org/satanasov/autoban)
 
 Auto Ban
 ============
@@ -21,6 +21,6 @@ Installation:
 
   1. Create anavaro folder in %phpBB%/ext
   2. cd %phpBB%/ext/anavaro
-  3. git clone https://github.com/lucifer4o/autoban.git
+  3. git clone https://github.com/satanasov/autoban.git
   4. Board Admin Panel -> Customize -> Manage extensions -> Enable Auto Ban
   5. Settings are in Board Settings menu in ACP.
