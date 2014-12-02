@@ -46,4 +46,37 @@ class autoban_functioning extends autoban_base
 		
 		$this->assertEquals(1, $this->is_banned($this->get_user_id('testuser1')));
 	}
+	public function test_post_warn()
+	{
+		$this->create_user('testuser2');
+		$this->add_user_group('NEWLY_REGISTERED', array('testuser1'));
+		
+		$this->login('testuser2');
+		
+		$post = $this->create_topic(2, 'Test Topic 1', 'This is a test topic posted by the testing framework.');
+		$crawler = self::request('GET', "viewtopic.php?t={$post['topic_id']}&sid={$this->sid}");
+		
+		$post2 = $this->create_post(2, $post['topic_id'], 'Re: Test Topic 1', 'This is a test [b]post[/b] posted by the testing framework.');
+		$crawler = self::request('GET', "viewtopic.php?t={$post2['topic_id']}&sid={$this->sid}");
+		
+		$post3 = $this->create_post(3, $post['topic_id'], 'Re: Test Topic 1', 'This is a test [b]post[/b] posted by the testing framework.');
+		$crawler = self::request('GET', "viewtopic.php?t={$post3['topic_id']}&sid={$this->sid}");
+		
+		
+		$this->logout();
+		
+		$this->login();
+		
+		$crawler = self::request('GET', 'mcp.php?i=warn&mode=warn_post&p=' . $post2['post_id'] . '&sid=' . $this->sid);
+		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
+		$crawler = self::submit($form);
+		
+		$crawler = self::request('GET', 'mcp.php?i=warn&mode=warn_post&p=' . $post3['post_id'] . '&sid=' . $this->sid);
+		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
+		$crawler = self::submit($form);
+		
+		$this->logout();
+		
+		$this->assertEquals(1, $this->is_banned($this->get_user_id('testuser2')));
+	}
 }

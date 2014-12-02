@@ -23,7 +23,8 @@ class mainlistener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.mcp_warn_user_after'	=> 'main_funct',
+			'core.mcp_warn_user_after'	=> 'user_funct',
+			'core.mcp_warn_post_after'	=> 'post_funct',
 		);
 	}
 
@@ -52,7 +53,18 @@ class mainlistener implements EventSubscriberInterface
 		$this->php_ext = $php_ext;
 	}
 
-	public function main_funct($event)
+	public function user_funct($event)
+	{
+		if($this->config['autoban_active'] && ($event['user_row']['user_warnings'] + 1) >= $this->config['autoban_count'])
+		{
+			if (!function_exists('user_ban'))
+			{
+				include($this->root_path . 'includes/functions_user.' . $this->php_ext);
+			}
+			user_ban('user', utf8_normalize_nfc($event['user_row']['username']), $this->config['autoban_duration'] * 60 * 24, '', '', $this->config['autoban_reason'], $this->config['autoban_reason']);
+		}
+	}
+	public function post_funct($event)
 	{
 		if($this->config['autoban_active'] && ($event['user_row']['user_warnings'] + 1) >= $this->config['autoban_count'])
 		{
