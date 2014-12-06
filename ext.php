@@ -12,7 +12,7 @@
 namespace anavaro\autoban;
 
 /**
-* Extension class for board announcements
+* Extension class for Auto Ban
 */
 
 class ext extends \phpbb\extension\base

@@ -2,7 +2,7 @@
 
 /**
 *
-* Birthday Control extension for the phpBB Forum Software package.
+* Auto Ban extension - ACP Listener
 *
 * @copyright (c) 2014 Lucifer <http://www.anavaro.com>
 * @license GNU General Public License, version 2 (GPL-2.0)
