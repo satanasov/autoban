@@ -2,15 +2,13 @@ services:
     anavaro.autoban.acplistener:
         class: anavaro\autoban\event\acplistener
         arguments:
-            - '@controller.helper'
-            - '@user'
+            - '@language'
         tags:
             - { name: event.listener }
     anavaro.autoban.mainlistener:
         class: anavaro\autoban\event\mainlistener
         arguments:
             - '@config'
-            - '@controller.helper'
             - '%core.root_path%'
             - '%core.php_ext%'
         tags:

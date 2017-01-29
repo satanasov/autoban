@@ -18,7 +18,30 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class mainlistener implements EventSubscriberInterface
 {
-	protected $bday_array;
+	/** @var \phpbb\config\config */
+	protected $config;
+
+	/** @var %root_path% */
+	protected $root_path;
+
+	/** @var %php_ext% */
+	protected $php_ext;
+
+	/**
+	 * Constructor
+	 * NOTE: The parameters of this method must match in order and type with
+	 * the dependencies defined in the services.yml file for this service.
+	 *
+	 * @param \phpbb\config\config     $config
+	 * @param                          $root_path
+	 * @param                          $php_ext
+	 */
+	public function __construct(\phpbb\config\config $config, $root_path, $php_ext)
+	{
+		$this->config = $config;
+		$this->root_path = $root_path;
+		$this->php_ext = $php_ext;
+	}
 
 	static public function getSubscribedEvents()
 	{
@@ -26,31 +49,6 @@ class mainlistener implements EventSubscriberInterface
 			'core.mcp_warn_user_after'	=> 'user_funct',
 			'core.mcp_warn_post_after'	=> 'post_funct',
 		);
-	}
-
-	/**
-	* Constructor
-	* NOTE: The parameters of this method must match in order and type with
-	* the dependencies defined in the services.yml file for this service.
-	*
-	* @param \phpbb\auth		$auth		Auth object
-	* @param \phpbb\cache\service	$cache		Cache object
-	* @param \phpbb\config	$config		Config object
-	* @param \phpbb\db\driver	$db		Database object
-	* @param \phpbb\request	$request	Request object
-	* @param \phpbb\template	$template	Template object
-	* @param \phpbb\user		$user		User object
-	* @param \phpbb\controller\helper		$helper				Controller helper object
-	* @param \phpbb\controller\log		$log				log
-	* @param string			$root_path	phpBB root path
-	* @param string			$php_ext	phpEx
-	*/
-	public function __construct(\phpbb\config\config $config, \phpbb\controller\helper $helper, $root_path, $php_ext)
-	{
-		$this->config = $config;
-		$this->helper = $helper;
-		$this->root_path = $root_path;
-		$this->php_ext = $php_ext;
 	}
 
 	public function user_funct($event)

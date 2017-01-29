@@ -13,7 +13,7 @@ namespace anavaro\autoban\tests\functional;
 /**
 * @group functional
 */
-class autoban_functioning extends autoban_base
+class autoban_functioning_test extends autoban_base
 {
 	public function test_main()
 	{

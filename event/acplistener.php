@@ -18,25 +18,26 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class acplistener implements EventSubscriberInterface
 {
+	/** @var \phpbb\language\language */
+	protected $lang;
+
+	/**
+	 * Constructor
+	 * NOTE: The parameters of this method must match in order and type with
+	 * the dependencies defined in the services.yml file for this service.
+	 *
+	 * @param \phpbb\language\language $lang
+	 */
+	public function __construct(\phpbb\language\language $lang)
+	{
+		$this->lang = $lang;
+	}
+
 	static public function getSubscribedEvents()
 	{
 		return array(
 			'core.acp_board_config_edit_add'	=>	'add_options',
 		);
-	}
-
-	/**
-	* Constructor
-	* NOTE: The parameters of this method must match in order and type with
-	* the dependencies defined in the services.yml file for this service.
-	*
-	* @param \phpbb\controller\helper		$helper				Controller helper object
-	* @param \phpbb\user		$user		User object
-	*/
-	public function __construct(\phpbb\controller\helper $helper, \phpbb\user $user)
-	{
-		$this->helper = $helper;
-		$this->user = $user;
 	}
 
 	public function add_options($event)
@@ -51,7 +52,7 @@ class acplistener implements EventSubscriberInterface
 			$my_config_vars = array(
 				'autoban_active' => array('lang' => 'AUTOBAN_ACTIVE', 'validate' => 'bool', 'type' => 'radio:yes_no', 'explain' => true),
 				'autoban_count' => array('lang' => 'AUTOBAN_COUNT', 'validate' => 'int:0:99', 'type' => 'number:0:99', 'explain' => true),
-				'autoban_duration' => array('lang' => 'AUTOBAN_DURATION', 'validate' => 'int:0:99', 'type' => 'number:0:99', 'explain' => true, 'append' => $this->user->lang['DAYS']),
+				'autoban_duration' => array('lang' => 'AUTOBAN_DURATION', 'validate' => 'int:0:99', 'type' => 'number:0:99', 'explain' => true, 'append' => $this->lang->lang('DAYS')),
 				'autoban_reason' => array('lang' => 'AUTOBAN_REASON', 'validate' => 'string', 'type' => 'text:40:255', 'explain' => true),
 			);
 
