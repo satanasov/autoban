@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/satanasov/autoban.svg?branch=master)](https://travis-ci.org/satanasov/autoban)
+[![Build Status](https://travis-ci.org/satanasov/autoban.svg?branch=master)](https://travis-ci.org/satanasov/autoban) [![Code Coverage](https://scrutinizer-ci.com/g/satanasov/autoban/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/satanasov/autoban/?branch=master) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/satanasov/autoban/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/satanasov/autoban/?branch=master)
 
 Auto Ban
 ============
