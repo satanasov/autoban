@@ -2,7 +2,7 @@
 
 /**
 *
-* Auto Ban extension - Main listener 
+* Auto Ban extension - Main listener
 *
 * @copyright (c) 2014 Lucifer <http://www.anavaro.com>
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -53,7 +53,7 @@ class mainlistener implements EventSubscriberInterface
 
 	public function user_funct($event)
 	{
-		if($this->config['autoban_active'] && ($event['user_row']['user_warnings'] + 1) >= $this->config['autoban_count'])
+		if ($this->config['autoban_active'] && ($event['user_row']['user_warnings'] + 1) >= $this->config['autoban_count'])
 		{
 			if (!function_exists('user_ban'))
 			{
@@ -64,7 +64,7 @@ class mainlistener implements EventSubscriberInterface
 	}
 	public function post_funct($event)
 	{
-		if($this->config['autoban_active'] && ($event['user_row']['user_warnings'] + 1) >= $this->config['autoban_count'])
+		if ($this->config['autoban_active'] && ($event['user_row']['user_warnings'] + 1) >= $this->config['autoban_count'])
 		{
 			if (!function_exists('user_ban'))
 			{
