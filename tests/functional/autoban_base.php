@@ -20,13 +20,13 @@ class autoban_base extends \phpbb_functional_test_case
 		return array('anavaro/autoban');
 	}
 
-	public function setUp()
+	public function setUp() : void
 	{
 		parent::setUp();
 	}
 
 	/**
-	* Allow birthday (just to be sure) 
+	* Allow birthday (just to be sure)
 	*/
 	public function allow_autoban($var = 1)
 	{
@@ -40,7 +40,7 @@ class autoban_base extends \phpbb_functional_test_case
 
 		$this->purge_cache();
 	}
-	
+
 	public function get_user_id($username)
 	{
 		$sql = 'SELECT user_id, username
@@ -50,7 +50,7 @@ class autoban_base extends \phpbb_functional_test_case
 		$row = $this->db->sql_fetchrow($result);
 		return $row['user_id'];
 	}
-	
+
 	public function is_banned($user_id)
 	{
 		$sql = 'SELECT COUNT(ban_id) as count
@@ -58,7 +58,7 @@ class autoban_base extends \phpbb_functional_test_case
 				WHERE ban_userid = ' . $user_id;
 		$result = $this->db->sql_query($sql);
 		$row = $this->db->sql_fetchrow($result);
-		
+
 		return $row['count'];
 	}
 }
