@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Adds abbilty to ban users on particular count of board warnings",
 	"homepage": "https://github.com/satanasov/autoban",
-	"version": "1.0.1",
+	"version": "1.0.1-1",
 	"time": "2017-01-28",
 	"license": "GPL-2.0",
 	"authors": [
